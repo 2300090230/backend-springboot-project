@@ -1,0 +1,11 @@
+package com.klef.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("facultyapi")
+public class FacultyController 
+{
+
+}
