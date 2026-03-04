@@ -88,7 +88,7 @@ public class AdminController
 		}
 		else 
 		{
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Faculty Data Not Found");
+			return ResponseEntity.status(204).body("Faculty Data Not Found");
 		}
 	
 	}
