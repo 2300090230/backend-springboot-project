@@ -1,12 +1,10 @@
 package com.klef.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +23,26 @@ public class StudentController
 	{
 		return "Student Controller Home Page";
 	}
-
+	
+	@PostMapping("/login")
+	public ResponseEntity<?> checkstudentlogin(@RequestBody Student s) 
+	{
+		try
+		{
+			
+			Student student = service.checkStudentLogin(s.getEmail(),s.getPassword());
+			if (student != null) 
+			{
+				return ResponseEntity.status(200).body(student);
+			}
+			else 
+			{
+				return ResponseEntity.status(401).body("Student Login Failed");
+			}
+		}
+		catch(Exception e)
+		{
+			return ResponseEntity.status(500).body(e.getMessage());
+		}
+	}
 }

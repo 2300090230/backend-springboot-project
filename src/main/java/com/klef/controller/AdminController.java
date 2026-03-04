@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klef.model.Admin;
+import com.klef.model.Faculty;
 import com.klef.model.Student;
 import com.klef.service.AdminService;
 
@@ -61,7 +62,8 @@ public class AdminController
 		}
 	}
 	
-	@GetMapping("/viewall")
+	
+	@GetMapping("/viewallstudents")
 	public ResponseEntity<?>   viewallstudents()
 	{
 		List<Student> students = adminService.viewAllStudents();
@@ -74,4 +76,37 @@ public class AdminController
 		}
 	
 	}
+	
+	@GetMapping("/viewallfaculty")
+	public ResponseEntity<?>   viewallfaculty()
+	{
+		System.out.println("hello");
+		List<Faculty> faculty = adminService.viewAllFaculty();
+		if (faculty.size()>0) 
+		{
+			return ResponseEntity.status(200).body(faculty);
+		}
+		else 
+		{
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Faculty Data Not Found");
+		}
+	
+	}
+	
+	@PostMapping("/addfaculty")
+	public ResponseEntity<String> addFaculty(@RequestBody Faculty f)
+	{
+		try
+		{
+			String msg = adminService.addFaculty(f);
+
+			return ResponseEntity.status(201).body(msg);
+		} 
+		catch (Exception e)
+		{
+			return ResponseEntity.status(500).body(e.getMessage());
+		}
+	}
+	
+	
 }
