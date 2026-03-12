@@ -1,8 +1,11 @@
 package com.klef.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +28,10 @@ public class Student
    private String contact;
 	@Column(length = 30,nullable = false)
 	private String password;
+	
+//	@OneToMany
+//	private List<Certification> certifications;
+	
    //setter and getter methods 
 public long getId() {
 	return id;
